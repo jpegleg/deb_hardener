@@ -11,10 +11,10 @@ linesx () {
 }
 
 buildoutbound () {
-  GATEWAY="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n1)";
-  /usr/sbin/ufw allow out to $GATEWAY port 53;
-  GATEWAY="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n2 | tail -n1)";
-  /usr/sbin/ufw allow out to $GATEWAY port 53;
+  GATEWAY1="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n1)";
+  /usr/sbin/ufw allow out to $GATEWAY1 port 53;
+  GATEWAY2="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n2 | tail -n1)";
+  /usr/sbin/ufw allow out to $GATEWAY2 port 53;
   for source in $(cat /etc/apt/sources.list /etc/apt/sources.list.d/*); do
     echo "$source" | grep ^http | sort -u | cut -d'/' -f3 | sort -u | while read line; do
       echo "building firewall rules for $line";
