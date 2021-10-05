@@ -75,7 +75,6 @@ case "$1" in
     echo
   ;;
   53)
-    /usr/sbin/ufw allow out to $GATEWAY port 53;
     /usr/sbin/ufw allow out from any port 53;
     echo -e "\e[1:24m WARNING \e[0m- opening up port 53 UDP and TCP for DNS to any destination! Change to explicit rules if you can!"
     echo
