@@ -51,7 +51,7 @@ echo
 echo -e "\e[1;32m deb_hardener starting"
 echo
 echo
-aptitude install ufw apparmor -y
+aptitude install ufw apparmor app-armor-utils -y
 systemctl enable ufw
 yes | /usr/sbin/ufw enable
 /usr/sbin/ufw allow 22/tcp
