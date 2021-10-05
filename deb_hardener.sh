@@ -98,7 +98,7 @@ perms 1777 /tmp root
 perms 755 /run root
 
 echo
-echo -e "\e[1;32m exporting standard root PATH"
+echo -e "\e[1;32m exporting standard root \e[0mPATH"
 echo
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
 echo
