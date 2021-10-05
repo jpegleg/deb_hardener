@@ -101,6 +101,10 @@ perms 700 /lost+found root
 perms 555 /sys root
 perms 1777 /tmp root
 perms 755 /run root
+perms 755 /usr/sbin root
+perms 755 /usr/local/sbin root
+perms 755 /usr/bin root
+perms 755 /usr/local/bin root
 
 echo
 echo -e "\e[1;32m exporting standard root \e[0mPATH"
