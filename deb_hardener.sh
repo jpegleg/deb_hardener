@@ -30,7 +30,7 @@ perms () {
   chown "$3":"$3" "$2"
 }
 
-whieh traceroute || exit 1
+which traceroute || exit 1
 
 user=$(whoami)
 if [ "$user" = "root" ]; then
