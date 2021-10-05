@@ -8,7 +8,7 @@ DNS resolution and collect the IP and then write allow out firewall rules for po
 traceroute is more consistently installed.
 
 ## Warning!
-This script denies all network traffic by default, allowing in 443 and 22 only, and out only to default gateway port 53 and apt sources 80 and 443.
+This script denies all network traffic by default, allowing in 443 and 22 only, and out only to the nameservers in the /etc/resolv.conf port 53 and apt sources 80 and 443.
 
 
 ### One approach...
