@@ -21,3 +21,10 @@ allowing it to deny outbound until the event is resolved.
 ```
 bash deb_hardener.sh
 ```
+
+## Example ansible:
+
+```
+ansible-playbook -u root -i hosts.inventory harden_crew.yml -vv
+```
+
