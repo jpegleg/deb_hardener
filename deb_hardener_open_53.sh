@@ -33,15 +33,15 @@ perms () {
   chown "$3":"$3" "$2"
 }
 
-which aptitude || apt-get install aptitude -y || exit 1
-which traceroute || aptitude install traceroute -y || exit 1
-
 user=$(whoami)
 if [ "$user" = "root" ]; then
   echo "Proceeding as root."
 else
   exit 1
 fi
+
+which aptitude || apt-get install aptitude -y || exit 1
+which traceroute || aptitude install traceroute -y || exit 1
 
 reset
 echo "$(date +%Y%m%d%H%M%S) starting run."
