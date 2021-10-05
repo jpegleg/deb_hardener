@@ -1,0 +1,21 @@
+---
+
+-
+  hosts: deb_hard
+  gather_facts: no
+  tasks:
+  
+  - name: deploy 
+    copy:
+      src: ../deb_hardener.sh
+      dest: /usr/local/sbin/dbhd
+      owner: root
+      group: root
+      mode: '750'
+
+  - name: execute the hardener
+    shell: /usr/local/sbin/dbhd
+    args:
+      executable: /bin/bash
+    
+...
