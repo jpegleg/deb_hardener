@@ -12,7 +12,7 @@ This script denies all network traffic by default, allowing in 443 and 22 only, 
 
 ### One approach...
 Because denying outbound can be a lot to manage, you might disable ufw normally, and then if a security event is triggered, run the deb_hardener.sh
-allowing it to deny outbound until the even is resolved.
+allowing it to deny outbound until the event is resolved.
 
 
 ## Example:
