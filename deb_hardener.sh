@@ -20,13 +20,13 @@ buildoutbound () {
       /usr/sbin/ufw allow out to any port 123 proto udp;
       echo -e "\e[1:24m WARNING \e[0m- opening up port 123/udp for NTP to any destination! Change to explicit rules if you can!"
       echo
-  ;;
+    ;;
     53)
       /usr/sbin/ufw allow out to $GATEWAY port 53;
       /usr/sbin/ufw allow out from any port 53;
       echo -e "\e[1:24m WARNING \e[0m- opening up port 53 UDP and TCP for DNS to any destination! Change to explicit rules if you can!"
       echo
-  ;;  
+    ;;  
   *)  
   for source in $(cat /etc/apt/sources.list /etc/apt/sources.list.d/*); do
     echo "$source" | grep ^http | sort -u | cut -d'/' -f3 | sort -u | while read line; do
