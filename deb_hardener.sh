@@ -72,7 +72,7 @@ perms 644 /etc/group root
 perms 755 /etc root
 perms 440 /etc/sudoers root
 perms 755 /etc/systemd root
-perms 777 /lib root
+perms 755 /lib root
 perms 755 /lib32 root
 perms 755 /lib64 root
 perms 755 /boot root
