@@ -10,7 +10,7 @@ it fails, we are just using the DNS resolution built in to ping to collect the I
 This script denies all network traffic by default, allowing in 443 and 22 only, and out only to default gateway and apt sources 80 and 443.
 
 
-# One approach...
+### One approach...
 Because denying outbound can be a lot to manage, you might disable ufw normally, and then if a security event is triggered, run the deb_hardener.sh
 allowing it to deny outbound until the even is resolved.
 
