@@ -50,8 +50,9 @@ echo
 echo
 aptitude install ufw apparmor -y
 systemctl enable ufw
-/sbin/ufw allow 22/tcp
-/sbin/ufw allow 443/tcp
+yes | /usr/sbin/ufw enable
+/usr/sbin/ufw allow 22/tcp
+/usr/sbin/ufw allow 443/tcp
 /usr/sbin/ufw default deny outgoing
 /usr/sbin/ufw default deny incoming
 
