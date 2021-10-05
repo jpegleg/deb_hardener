@@ -11,14 +11,17 @@ linesx () {
 }
 
 buildoutbound () {
-  GATEWAY="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2)";
+  GATEWAY="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n1)";
   /usr/sbin/ufw allow out to $GATEWAY port 53;
-  /usr/sbin/ufw allow out 53/tcp;
-  /usr/sbin/ufw allow out 53/udp;
+  GATEWAY="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n2 | tail -n1)";
+  /usr/sbin/ufw allow out to $GATEWAY port 53;
+  /usr/sbin/ufw allow out from any port 53;
+  echo -e "\e[1:24m WARNING \e[0m- opening up port 53 UDP and TCP for DNS to any destination! Change to explicit rules if you can!"
+  echo
   for source in $(cat /etc/apt/sources.list /etc/apt/sources.list.d/*); do
     echo "$source" | grep ^http | sort -u | cut -d'/' -f3 | sort -u | while read line; do
       echo "building firewall rules for $line";
-      IPADDR=$(/usr/bin/ping -c1 $line | cut -d' ' -f3 | sed 's/(//g' | sed 's/)//g' | head -n1);
+      IPADDR=$(/usr/sbin/traceroute -m1  $line | head -n1 | sed 's/,//g' | cut -d' ' -f4 | sed 's/(//g' | sed 's/)//g');
       /usr/sbin/ufw allow out to $IPADDR port 80;
       /usr/sbin/ufw allow out to $IPADDR port 443;
     done
@@ -29,6 +32,15 @@ perms () {
   chmod "$1" "$2"
   chown "$3":"$3" "$2"
 }
+
+whieh traceroute || exit 1
+
+user=$(whoami)
+if [ "$user" = "root" ]; then
+  echo "Proceeding as root."
+else
+  exit 1
+fi
 
 reset
 echo "$(date +%Y%m%d%H%M%S) starting run."
@@ -89,7 +101,7 @@ perms 1777 /tmp root
 perms 755 /run root
 
 echo
-echo -e "\e[1;32m exporting standard root PATH"
+echo -e "\e[1;32m exporting standard root \e[0mPATH"
 echo
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
 echo
