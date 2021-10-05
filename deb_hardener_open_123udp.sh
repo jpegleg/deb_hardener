@@ -15,7 +15,7 @@ buildoutbound () {
   /usr/sbin/ufw allow out to $GATEWAY port 53;
   GATEWAY="$(cat /etc/resolv.conf | grep name | cut -d' ' -f2 | head -n2 | tail -n1)";
   /usr/sbin/ufw allow out to $GATEWAY port 53;
-  /usr/sbin/ufw allow out 123/udp;
+  /usr/sbin/ufw allow out to any port 123 proto udp;
   echo -e "\e[1:24m WARNING \e[0m- opening up port 123/udp for NTP to any destination! Change to explicit rules if you can!"
   echo
   for source in $(cat /etc/apt/sources.list /etc/apt/sources.list.d/*); do
